@@ -1,0 +1,42 @@
+{
+    "title": "Tech Stack & DNS Detector input",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "domains": {
+            "title": "Domains or website URLs",
+            "type": "array",
+            "editor": "stringList",
+            "description": "One per line, e.g. stripe.com or https://www.notion.so. Only the homepage is fetched (robots.txt respected); DNS records are public.",
+            "prefill": [
+                "stripe.com",
+                "shopify.com",
+                "notion.so"
+            ]
+        },
+        "checkWebsite": {
+            "title": "Detect website technologies",
+            "type": "boolean",
+            "default": true,
+            "description": "Fetch the homepage and detect CMS, frameworks, analytics, ads pixels, chat, payments, consent tools, CDN and hosting.",
+            "sectionCaption": "What to check"
+        },
+        "checkDns": {
+            "title": "Detect email & SaaS from DNS",
+            "type": "boolean",
+            "default": true,
+            "description": "Read public MX, SPF, TXT verification, DMARC and NS records: email provider, email sending tools, verified SaaS (Atlassian, Slack, DocuSign...), DNS provider."
+        },
+        "maxConcurrency": {
+            "title": "Domains processed in parallel",
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 20,
+            "default": 10,
+            "description": "How many domains are analyzed at the same time."
+        }
+    },
+    "required": [
+        "domains"
+    ]
+}
