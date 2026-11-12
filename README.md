@@ -57,14 +57,18 @@ Pay per event: **one fee per domain analyzed**. Domains that don't exist are not
 ```bash
 curl -X POST "https://api.apify.com/v2/acts/jobdata_labs~tech-stack-dns-detector/run-sync-get-dataset-items" \
   -H "Authorization: Bearer $APIFY_TOKEN" -H "Content-Type: application/json" \
-  -d '{"helloWorld": 123}'
+  -d '{"domains": ["stripe.com", "shopify.com", "notion.so"]}'
 ```
 
 ```js
 import { ApifyClient } from 'apify-client';
 const client = new ApifyClient({ token: process.env.APIFY_TOKEN });
 const run = await client.actor('jobdata_labs/tech-stack-dns-detector').call({
-    "helloWorld": 123
+    "domains": [
+        "stripe.com",
+        "shopify.com",
+        "notion.so"
+    ]
 });
 const { items } = await client.dataset(run.defaultDatasetId).listItems();
 ```
